@@ -12,6 +12,8 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
+using namespace cv;
+
 cv::Mat rescaleImageIntensity(const cv::Mat& img, ScaleType type) {
 
   cv::Mat rval;
@@ -64,11 +66,11 @@ void labelImage(cv::Mat& img, const std::string& text) {
 
   cv::putText(img, text, cv::Point(4, 20),
               cv::FONT_HERSHEY_SIMPLEX,
-              0.6, CV_RGB(0,0,0), 3, CV_AA);
+              0.6, CV_RGB(0,0,0), 3, LINE_AA);
 
   cv::putText(img, text, cv::Point(4, 20),
               cv::FONT_HERSHEY_SIMPLEX,
-              0.6, CV_RGB(255,255,255), 1, CV_AA);
+              0.6, CV_RGB(255,255,255), 1, LINE_AA);
 
 }
 
@@ -83,7 +85,7 @@ int resizeToDisplay(const cv::Mat& src, cv::Mat& dst,
   if (f > 1) {
 
     cv::Mat tmp;
-    cv::resize(src, tmp, cv::Size(0,0), f, f, CV_INTER_NN);
+    cv::resize(src, tmp, cv::Size(0,0), f, f, INTER_NEAREST);
     dst = tmp;
     return f;
 
